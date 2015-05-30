@@ -90,7 +90,7 @@ namespace AudioPlayerEx {
 
         private void Start() {
             if (PlayOnStart) {
-                PlayRandomSound();
+                PlayRandomClip();
             }
         }
 
@@ -113,7 +113,7 @@ namespace AudioPlayerEx {
         #endregion EVENT HANDLERS
 
         #region METHODS
-        public void PlayRandomSound() {
+        public void PlayRandomClip() {
             // Number of referenced AudioSource components.
             var audioSourceCount = AudioSources.Length;
 
