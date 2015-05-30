@@ -49,6 +49,9 @@ namespace AudioPlayerEx {
         [SerializeField]
         private bool playOnStart;
 
+        [SerializeField]
+        private float delay;
+
         #endregion INSPECTOR FIELDS
 
         #region PROPERTIES
@@ -77,6 +80,14 @@ namespace AudioPlayerEx {
             set { playOnStart = value; }
         }
 
+        /// <summary>
+        /// Delay applied before playing clip in Start().
+        /// </summary>
+        public float Delay {
+            get { return delay; }
+            set { delay = value; }
+        }
+
         #endregion PROPERTIES
 
         #region UNITY MESSAGES
@@ -90,19 +101,13 @@ namespace AudioPlayerEx {
 
         private void Start() {
             if (PlayOnStart) {
-                PlayRandomClip();
+                Invoke("PlayRandomClip", Delay);
             }
         }
 
         private void Update() { }
 
         private void OnValidate() { }
-
-        private void OnCollisionEnter(Collision collision) { }
-
-        private void OnCollisionStay(Collision collision) { }
-
-        private void OnCollisionExit(Collision collision) { }
 
         #endregion UNITY MESSAGES
 

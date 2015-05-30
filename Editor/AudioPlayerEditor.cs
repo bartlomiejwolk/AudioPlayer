@@ -23,6 +23,7 @@ namespace AudioPlayerEx {
         private SerializedProperty description;
         private SerializedProperty audioSources;
         private SerializedProperty playOnStart;
+        private SerializedProperty delay;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -37,6 +38,10 @@ namespace AudioPlayerEx {
             EditorGUILayout.Space();
 
             DrawPlayOnAwakeToggle();
+            DrawDelayField();
+
+            EditorGUILayout.Space();
+
             DrawAudioClipsList();
 
             serializedObject.ApplyModifiedProperties();
@@ -47,11 +52,20 @@ namespace AudioPlayerEx {
             description = serializedObject.FindProperty("description");
             audioSources = serializedObject.FindProperty("audioSources");
             playOnStart = serializedObject.FindProperty("playOnStart");
+            delay = serializedObject.FindProperty("delay");
         }
 
         #endregion UNITY MESSAGES
 
         #region INSPECTOR CONTROLS
+        private void DrawDelayField() {
+            EditorGUILayout.PropertyField(
+                delay,
+                new GUIContent(
+                    "Delay",
+                    "Delay applied before playing clip in Start()."));
+        }
+
         private void DrawAudioClipsList() {
             ReorderableListGUI.Title("Audio Sources");
             ReorderableListGUI.ListField(audioSources);
