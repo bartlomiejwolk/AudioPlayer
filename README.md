@@ -22,7 +22,7 @@ Extensions with version below 1.0.0 are considered to be pre/alpha and may not w
 2. Select game object in the hierarchy window and from the *Component* menu
    select *AudioPlayer* to add component to the selected game object.
 3. Add audio clips.
-4. In play mode call `PlayClip` method to play a random clip or select *Play On Awake* to
+4. In play mode call `PlayRandomClip` method to play a random clip or select *Play On Start* to
    have a clip played after the game object is activated.
 
 ## Help
