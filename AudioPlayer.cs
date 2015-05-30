@@ -46,9 +46,6 @@ namespace AudioPlayerEx {
         [SerializeField]
         private AudioSource[] audioSources;
 
-        /// <summary>
-        /// Play sound on Awake.
-        /// </summary>
         [SerializeField]
         private bool playOnStart;
 
@@ -72,6 +69,9 @@ namespace AudioPlayerEx {
             set { audioSources = value; }
         }
 
+        /// <summary>
+        /// Play sound on Awake.
+        /// </summary>
         public bool PlayOnStart {
             get { return playOnStart; }
             set { playOnStart = value; }
@@ -80,19 +80,6 @@ namespace AudioPlayerEx {
         #endregion PROPERTIES
 
         #region UNITY MESSAGES
-
-        public void PlayRandomSound() {
-            // Number of referenced AudioSource components.
-            var audioSourceCount = AudioSources.Length;
-
-            // Draw a random AudioSource.
-            var randomFloat = Random.Range(0, audioSourceCount);
-            var randomInt = Mathf.RoundToInt(randomFloat);
-
-            // Play sound.
-            audioSources[randomInt].Play();
-        }
-
         private void FixedUpdate() { }
 
         private void LateUpdate() { }
@@ -126,6 +113,18 @@ namespace AudioPlayerEx {
         #endregion EVENT HANDLERS
 
         #region METHODS
+        public void PlayRandomSound() {
+            // Number of referenced AudioSource components.
+            var audioSourceCount = AudioSources.Length;
+
+            // Draw a random AudioSource.
+            var randomFloat = Random.Range(0, audioSourceCount);
+            var randomInt = Mathf.RoundToInt(randomFloat);
+
+            // Play sound.
+            audioSources[randomInt].Play();
+        }
+
         #endregion METHODS
 
     }
