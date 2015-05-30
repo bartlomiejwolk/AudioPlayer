@@ -46,6 +46,12 @@ namespace AudioPlayerEx {
         [SerializeField]
         private AudioSource[] audioSources;
 
+        /// <summary>
+        /// Play sound on Awake.
+        /// </summary>
+        [SerializeField]
+        private bool playOnStart;
+
         #endregion INSPECTOR FIELDS
 
         #region PROPERTIES
@@ -66,13 +72,14 @@ namespace AudioPlayerEx {
             set { audioSources = value; }
         }
 
+        public bool PlayOnStart {
+            get { return playOnStart; }
+            set { playOnStart = value; }
+        }
+
         #endregion PROPERTIES
 
         #region UNITY MESSAGES
-
-        private void Awake() {
-            PlayRandomSound();
-        }
 
         public void PlayRandomSound() {
             // Number of referenced AudioSource components.
@@ -94,7 +101,11 @@ namespace AudioPlayerEx {
 
         private void Reset() { }
 
-        private void Start() { }
+        private void Start() {
+            if (PlayOnStart) {
+                PlayRandomSound();
+            }
+        }
 
         private void Update() { }
 

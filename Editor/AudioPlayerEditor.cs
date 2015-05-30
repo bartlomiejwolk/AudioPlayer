@@ -5,6 +5,7 @@
 
 using UnityEditor;
 using AudioPlayerEx.ReorderableList;
+using UnityEngine;
 
 namespace AudioPlayerEx {
 
@@ -21,6 +22,7 @@ namespace AudioPlayerEx {
 
         private SerializedProperty description;
         private SerializedProperty audioSources;
+        private SerializedProperty playOnStart;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -34,26 +36,35 @@ namespace AudioPlayerEx {
 
             EditorGUILayout.Space();
 
+            DrawPlayOnAwakeToggle();
             DrawAudioClipsList();
 
             serializedObject.ApplyModifiedProperties();
         }
-
-        private void DrawAudioClipsList() {
-            ReorderableListGUI.Title("Audio Sources");
-            ReorderableListGUI.ListField(audioSources);
-        }
-
         private void OnEnable() {
             Script = (AudioPlayer)target;
 
             description = serializedObject.FindProperty("description");
             audioSources = serializedObject.FindProperty("audioSources");
+            playOnStart = serializedObject.FindProperty("playOnStart");
         }
 
         #endregion UNITY MESSAGES
 
         #region INSPECTOR CONTROLS
+        private void DrawAudioClipsList() {
+            ReorderableListGUI.Title("Audio Sources");
+            ReorderableListGUI.ListField(audioSources);
+        }
+
+        private void DrawPlayOnAwakeToggle() {
+            EditorGUILayout.PropertyField(
+                playOnStart,
+                new GUIContent(
+                    "Play On Start",
+                    "Play sound on Awake."));
+        }
+
 
         private void DrawVersionLabel() {
             EditorGUILayout.LabelField(
