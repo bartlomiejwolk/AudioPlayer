@@ -70,7 +70,21 @@ namespace AudioPlayerEx {
 
         #region UNITY MESSAGES
 
-        private void Awake() { }
+        private void Awake() {
+            PlayRandomSound();
+        }
+
+        public void PlayRandomSound() {
+            // Number of referenced AudioSource components.
+            var audioSourceCount = AudioSources.Length;
+
+            // Draw a random AudioSource.
+            var randomFloat = Random.Range(0, audioSourceCount);
+            var randomInt = Mathf.RoundToInt(randomFloat);
+
+            // Play sound.
+            audioSources[randomInt].Play();
+        }
 
         private void FixedUpdate() { }
 
