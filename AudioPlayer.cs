@@ -41,10 +41,10 @@ namespace AudioPlayerEx {
         private string description = "Description";
 
         /// <summary>
-        /// Audio clips to be played.
+        /// Audio source components with clips to be played.
         /// </summary>
         [SerializeField]
-        private AudioClip[] audioClips;
+        private AudioSource[] audioSources;
 
         #endregion INSPECTOR FIELDS
 
@@ -58,9 +58,12 @@ namespace AudioPlayerEx {
             set { description = value; }
         }
 
-        public AudioClip[] AudioClips {
-            get { return audioClips; }
-            set { audioClips = value; }
+        /// <summary>
+        /// Audio source components with clips to be played.
+        /// </summary>
+        public AudioSource[] AudioSources {
+            get { return audioSources; }
+            set { audioSources = value; }
         }
 
         #endregion PROPERTIES

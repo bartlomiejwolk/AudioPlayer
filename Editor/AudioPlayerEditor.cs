@@ -20,7 +20,7 @@ namespace AudioPlayerEx {
         #region SERIALIZED PROPERTIES
 
         private SerializedProperty description;
-        private SerializedProperty audioClips;
+        private SerializedProperty audioSources;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -40,15 +40,15 @@ namespace AudioPlayerEx {
         }
 
         private void DrawAudioClipsList() {
-            ReorderableListGUI.Title("Audio Clips");
-            ReorderableListGUI.ListField(audioClips);
+            ReorderableListGUI.Title("Audio Sources");
+            ReorderableListGUI.ListField(audioSources);
         }
 
         private void OnEnable() {
             Script = (AudioPlayer)target;
 
             description = serializedObject.FindProperty("description");
-            audioClips = serializedObject.FindProperty("audioClips");
+            audioSources = serializedObject.FindProperty("audioSources");
         }
 
         #endregion UNITY MESSAGES
