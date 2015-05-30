@@ -4,6 +4,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root folder.
 
 using UnityEditor;
+using AudioPlayerEx.ReorderableList;
 
 namespace AudioPlayerEx {
 
@@ -19,6 +20,7 @@ namespace AudioPlayerEx {
         #region SERIALIZED PROPERTIES
 
         private SerializedProperty description;
+        private SerializedProperty audioClips;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -32,13 +34,21 @@ namespace AudioPlayerEx {
 
             EditorGUILayout.Space();
 
+            DrawAudioClipsList();
+
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawAudioClipsList() {
+            ReorderableListGUI.Title("Audio Clips");
+            ReorderableListGUI.ListField(audioClips);
         }
 
         private void OnEnable() {
             Script = (AudioPlayer)target;
 
             description = serializedObject.FindProperty("description");
+            audioClips = serializedObject.FindProperty("audioClips");
         }
 
         #endregion UNITY MESSAGES
